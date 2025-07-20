@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Records - QuickMark</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Attendance List</h1>
+
+    {% if records %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Session ID</th>
+                    <th>Student Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="text-align: center;">No attendance records found.</p>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a class="button" href="{{ url_for('index') }}">Back</a>
+    </div>
+</div>
+</body>
+</html>

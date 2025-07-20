@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to QuickMark</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to QuickMark</h1>
+        <p class="subtitle">QR Code Attendance System</p>
+
+        <div class="button-group">
+            <a href="{{ url_for('login') }}" class="button">Login</a>
+            <a href="{{ url_for('register') }}" class="button">Register</a>
+        </div>
+
+        {% if session.get('role') == 'teacher' and qr_code %}
+        <div class="qr-section">
+            <p class="subtitle">Current QR Code:</p>
+            <img src="{{ url_for('static', filename='qr.png') }}" alt="QR Code" class="qr-image">
+            <p class="token">Token: {{ token }}</p>
+            <div class="button-group">
+                <a href="{{ url_for('create_period') }}" class="button">Create Period</a>
+                <a href="{{ url_for('attendance') }}" class="button">View Attendance</a>
+            </div>
+        </div>
+        {% elif session.get('role') == 'student' %}
+        <div class="button-group">
+            <a href="{{ url_for('scan') }}" class="button">Scan QR Code</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

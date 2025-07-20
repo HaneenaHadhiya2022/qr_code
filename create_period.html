@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Period - QuickMark</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Create New Period</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+            {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Enter subject name" required>
+
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required>
+
+        <button type="submit">Create & Generate QR</button>
+    </form>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a class="button" href="{{ url_for('index') }}">Back</a>
+    </div>
+</div>
+</body>
+</html>
